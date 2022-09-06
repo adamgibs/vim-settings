@@ -1,38 +1,36 @@
 call plug#begin()
-  Plug 'tomasiser/vim-code-dark'
-  Plug 'pangloss/vim-javascript'
-  Plug 'itchyny/lightline.vim'
-  Plug 'itchyny/vim-gitbranch'
-  Plug 'preservim/nerdtree'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'b3nj5m1n/kommentary'
-  Plug 'tpope/vim-surround'
-  Plug 'f-person/git-blame.nvim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-call plug#end()                 
+	Plug 'tomasiser/vim-code-dark'
+	Plug 'pangloss/vim-javascript'
+	Plug 'othree/html5.vim'
+	Plug 'evanleck/vim-svelte', {'branch': 'main'}
+	Plug 'itchyny/lightline.vim'
+	Plug 'itchyny/vim-gitbranch'
+	Plug 'preservim/nerdtree'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'b3nj5m1n/kommentary'
+	Plug 'tpope/vim-surround'
+	Plug 'f-person/git-blame.nvim'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+	Plug 'puremourning/vimspector'
+ call plug#end()                 
 
 
 
 " basic settings
-syntax on
+ syntax on
 set modifiable 
 set number relativenumber
 set ignorecase    
 set smartcase     
-set nocompatible
 set incsearch     
 set visualbell
-set expandtab
 set tabstop=2
 set ruler              
-set smartindent
 set shiftwidth=2
 set hlsearch
-set virtualedit=all
 set backspace=indent,eol,start 
 set autoindent
-set wildmode 
 set path+=**
 set clipboard=unnamedplus
 set nowrap
@@ -55,11 +53,14 @@ nnoremap <leader>j :Buffers<CR>
 " set escape shortcut in insert mode
 inoremap jj <esc>
 
-" " GoTo code navigation.
+" GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Organize Java imports
+nmap <silent> goi :CocCommand java.action.organizeImports<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -76,6 +77,7 @@ endfunction
 
 " Symbol renaming.
 nmap <space>rf <Plug>(coc-rename)
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 colorscheme codedark
 let g:lightline = {
@@ -87,4 +89,3 @@ let g:lightline = {
       \   'gitbranch': 'gitbranch#name'
       \ },             
       \ }
-
